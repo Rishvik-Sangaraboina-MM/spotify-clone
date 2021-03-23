@@ -15,4 +15,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeVM>() {
     super.onCreate(savedInstanceState)
   }
 
+
+
+
 }

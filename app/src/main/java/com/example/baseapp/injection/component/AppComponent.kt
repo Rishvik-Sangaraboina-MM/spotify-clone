@@ -3,6 +3,8 @@ package com.example.baseapp.injection.component
 import android.content.Context
 import com.example.baseapp.injection.module.ActivityBindingModule
 import com.example.baseapp.injection.module.AppModule
+import com.example.baseapp.injection.module.NetworkModule
+import com.example.baseapp.injection.module.PreferenceModule
 import com.example.baseapp.injection.module.RepositoryModule
 import com.example.baseapp.injection.module.SourceModule
 import com.example.baseapp.injection.module.UsecaseModule
@@ -24,7 +26,9 @@ import javax.inject.Singleton
     ViewModelFactoryModule::class,
     RepositoryModule::class,
     SourceModule::class,
-    UsecaseModule::class
+    UsecaseModule::class,
+    NetworkModule::class,
+    PreferenceModule::class
   ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
