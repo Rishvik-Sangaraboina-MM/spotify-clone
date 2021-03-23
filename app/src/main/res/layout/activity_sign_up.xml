@@ -3,14 +3,137 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
+
   <data>
 
+    <variable
+        name="isLoading"
+        type="Boolean"
+        />
+
   </data>
-  <androidx.constraintlayout.widget.ConstraintLayout
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      tools:context=".ui.auth.signup.SignUpActivity"
+      tools:context=".ui.signup.SignUpActivity"
       >
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        visibility="@{!isLoading}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@drawable/shutterstock_1472930963"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/input_first_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_10dp"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_first_name"
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/input_last_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_10dp"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_last_name"
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/input_username"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_10dp"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/input_email"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_10dp"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_e_mail"
+            android:inputType="textEmailAddress"
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/input_password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_10dp"
+          app:passwordToggleEnabled="true"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/btn_signup"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_20dp"
+          android:text="@string/text_register"
+          />
+    </LinearLayout>
+
+    <ProgressBar
+        visibility="@{isLoading}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

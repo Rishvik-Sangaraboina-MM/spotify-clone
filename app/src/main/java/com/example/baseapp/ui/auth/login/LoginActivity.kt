@@ -3,6 +3,7 @@ package com.example.baseapp.ui.auth.login
 import android.os.Bundle
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityLoginBinding
+import com.example.baseapp.ui.auth.signup.SignUpActivity
 import com.example.baseapp.util.ViewState.Error
 import com.example.baseapp.util.ViewState.Loading
 import com.example.baseapp.util.ViewState.Success
@@ -29,6 +30,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding,LoginVM>() {
       val email = binding.editEmail.text.toString()
       val password = binding.editPassword.text.toString()
       login(email, password)
+    }
+
+    binding.btnRegister.setOnClickListener {
+      ActivityNavigator.startActivity(this,SignUpActivity::class.java)
     }
   }
 
