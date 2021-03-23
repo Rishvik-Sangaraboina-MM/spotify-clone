@@ -1,5 +1,6 @@
 package com.example.baseapp.injection.module
 
+import com.example.baseapp.injection.scope.ActivityScope
 import com.example.domain.repository.IAuthRepo
 import com.example.domain.usecase.auth.IsUserLoggedInUseCase
 import com.example.domain.usecase.auth.LoginUserUseCase
@@ -12,19 +13,19 @@ import javax.inject.Singleton
 class UsecaseModule {
 
   @Provides
-  @Singleton
+  @ActivityScope
   fun provideLoginUserUseCase(authRepo: IAuthRepo) : LoginUserUseCase{
     return LoginUserUseCase(authRepo)
   }
 
   @Provides
-  @Singleton
+  @ActivityScope
   fun provideLogoutUserUseCase(authRepo: IAuthRepo) : LogoutUserUseCase{
     return LogoutUserUseCase(authRepo)
   }
 
   @Provides
-  @Singleton
+  @ActivityScope
   fun provideIsUserLoggedInUseCase(authRepo: IAuthRepo) : IsUserLoggedInUseCase{
     return IsUserLoggedInUseCase(authRepo)
   }

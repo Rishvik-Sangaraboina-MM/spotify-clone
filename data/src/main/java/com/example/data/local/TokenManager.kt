@@ -9,8 +9,12 @@ class TokenManager(private val prefs: SharedPreferences) {
   }
 
   var accessToken: String?
-    get() = prefs.getString(USER_TOKEN, null)
-    set(value) = prefs.edit().putString(USER_TOKEN, value).apply()
+    get() {
+      return prefs.getString(USER_TOKEN, null)
+    }
+    set(value) {
+      prefs.edit().putString(USER_TOKEN, value).apply()
+    }
 
   var refreshToken: String?
     get() = prefs.getString(REFRESH_TOKEN, null)
