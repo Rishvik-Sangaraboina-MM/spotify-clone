@@ -8,32 +8,20 @@ class TokenManager(private val prefs: SharedPreferences) {
     private const val REFRESH_TOKEN = "refresh_token"
   }
 
-  private fun saveAccessToken(token: String) {
-    val editor = prefs.edit()
-    editor.putString(USER_TOKEN, token)
-    editor.apply()
-  }
+  var accessToken: String?
+    get() = prefs.getString(USER_TOKEN, null)
+    set(value) = prefs.edit().putString(USER_TOKEN, value).apply()
 
-  fun fetchAccessToken(): String? {
-    return prefs.getString(USER_TOKEN, null)
-  }
-
-  private fun saveRefreshToken(token: String) {
-    val editor = prefs.edit()
-    editor.putString(REFRESH_TOKEN, token)
-    editor.apply()
-  }
-
-  fun fetchRefreshToken(): String? {
-    return prefs.getString(REFRESH_TOKEN, null)
-  }
+  var refreshToken: String?
+    get() = prefs.getString(REFRESH_TOKEN, null)
+    set(value) = prefs.edit().putString(REFRESH_TOKEN, value).apply()
 
   fun saveTokens(
     accessToken: String,
     refreshToken: String
   ) {
-    saveAccessToken(accessToken)
-    saveRefreshToken(refreshToken)
+    this.accessToken = accessToken
+    this.refreshToken = refreshToken
   }
 
   fun deleteTokens() {
@@ -43,6 +31,6 @@ class TokenManager(private val prefs: SharedPreferences) {
   }
 
   fun isUserLoggedIn(): Boolean {
-    return fetchAccessToken() != null && fetchRefreshToken() != null
+    return accessToken != null && refreshToken != null
   }
 }
