@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.baseapp.injection.scope.ViewModelScope
 import com.example.baseapp.ui.auth.login.LoginVM
+import com.example.baseapp.ui.auth.signup.SignUpVM
 import com.example.baseapp.ui.home.HomeVM
 import com.example.baseapp.util.ViewModelFactory
 import dagger.Binds
@@ -25,4 +26,9 @@ abstract class ViewModelFactoryModule {
   @IntoMap
   @ViewModelScope(LoginVM::class)
   abstract fun bindLoginVM(loginVM: LoginVM) : ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelScope(SignUpVM::class)
+  abstract fun bindSignUpVM(signUpVM: SignUpVM) : ViewModel
 }

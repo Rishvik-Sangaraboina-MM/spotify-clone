@@ -1,4 +1,4 @@
-package com.example.baseapp.ui.auth.login
+package com.example.baseapp.util
 
 sealed class ViewState{
   object Idle : ViewState()

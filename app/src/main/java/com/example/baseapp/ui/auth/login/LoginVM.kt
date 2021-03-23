@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.baseapp.ui.auth.login.ViewState.Error
-import com.example.baseapp.ui.auth.login.ViewState.Idle
-import com.example.baseapp.ui.auth.login.ViewState.Loading
+import com.example.baseapp.util.ViewState
+import com.example.baseapp.util.ViewState.Error
+import com.example.baseapp.util.ViewState.Idle
+import com.example.baseapp.util.ViewState.Loading
 import com.example.domain.entity.LoginRequest
 import com.example.domain.usecase.auth.IsUserLoggedInUseCase
 import com.example.domain.usecase.auth.LoginUserUseCase
-import com.example.domain.usecase.auth.LogoutUserUseCase
 import com.example.domain.util.SafeResult.Failure
 import com.example.domain.util.SafeResult.NetworkError
 import com.example.domain.util.SafeResult.Success

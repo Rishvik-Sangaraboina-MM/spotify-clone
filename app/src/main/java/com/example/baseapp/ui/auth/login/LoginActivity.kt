@@ -3,9 +3,9 @@ package com.example.baseapp.ui.auth.login
 import android.os.Bundle
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityLoginBinding
-import com.example.baseapp.ui.auth.login.ViewState.Error
-import com.example.baseapp.ui.auth.login.ViewState.Loading
-import com.example.baseapp.ui.auth.login.ViewState.Success
+import com.example.baseapp.util.ViewState.Error
+import com.example.baseapp.util.ViewState.Loading
+import com.example.baseapp.util.ViewState.Success
 import com.example.baseapp.ui.base.ActivityNavigator
 import com.example.baseapp.ui.base.BaseActivity
 import com.example.baseapp.ui.home.HomeActivity
@@ -44,7 +44,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding,LoginVM>() {
 
   private fun login(email : String, password : String){
 
-    viewModel.login(LoginRequest("rrrishvik@gmail.com","email","cmHunk@789",null))
+    viewModel.login(LoginRequest(email,"email",password,null))
   }
 
 }
