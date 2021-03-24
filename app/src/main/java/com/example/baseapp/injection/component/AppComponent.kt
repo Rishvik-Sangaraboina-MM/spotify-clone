@@ -7,7 +7,7 @@ import com.example.baseapp.injection.module.NetworkModule
 import com.example.baseapp.injection.module.PreferenceModule
 import com.example.baseapp.injection.module.RepositoryModule
 import com.example.baseapp.injection.module.SourceModule
-import com.example.baseapp.injection.module.UsecaseModule
+import com.example.baseapp.injection.module.UseCaseModule
 import com.example.baseapp.injection.module.ViewModelFactoryModule
 import com.example.baseapp.injection.qualifiers.ApplicationContext
 import com.example.baseapp.util.BaseApplication
@@ -26,7 +26,7 @@ import javax.inject.Singleton
     ViewModelFactoryModule::class,
     RepositoryModule::class,
     SourceModule::class,
-    UsecaseModule::class,
+    UseCaseModule::class,
     NetworkModule::class,
     PreferenceModule::class
   ]

@@ -13,14 +13,13 @@ import javax.inject.Singleton
 
 @Module
 class SourceModule {
+
   @Provides
-  @ActivityScope
   fun provideAuthRemoteSource(authApi: AuthApi) : IAuthRemoteSource {
     return AuthRemoteSource(authApi)
   }
 
   @Provides
-  @ActivityScope
   fun provideAuthLocalSource(tokenManager: TokenManager) : IAuthLocalSource{
     return AuthLocalSource(tokenManager)
   }

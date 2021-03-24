@@ -14,7 +14,6 @@ import javax.inject.Singleton
 @Module
 class RepositoryModule {
   @Provides
-  @ActivityScope
   fun provideAuthRepo(authLocalSource: IAuthLocalSource,authRemoteSource: IAuthRemoteSource) : IAuthRepo{
     return AuthRepo(authLocalSource,authRemoteSource)
   }
