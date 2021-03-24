@@ -12,9 +12,9 @@ abstract class ActivityBindingModule {
 
   @ActivityScope
   @ContributesAndroidInjector(modules = [HomeActivityModule::class])
-  abstract fun bindHomeActivity() : HomeActivity
+  abstract fun bindHomeActivity(): HomeActivity
 
   @ActivityScope
   @ContributesAndroidInjector
-  abstract fun bindLoginActivity() : LoginActivity
+  abstract fun bindLoginActivity(): LoginActivity
 }

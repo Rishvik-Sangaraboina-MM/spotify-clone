@@ -1,6 +1,6 @@
 package com.example.baseapp.util
 
-sealed class ViewState{
+sealed class ViewState {
   object Idle : ViewState()
   object Success : ViewState()
   object Loading : ViewState()

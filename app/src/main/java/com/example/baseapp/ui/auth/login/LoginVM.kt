@@ -22,12 +22,12 @@ class LoginVM @Inject constructor(
   private val isUserLoggedInUseCase: IsUserLoggedInUseCase
 ) : ViewModel() {
 
-  private val _viewState : MutableLiveData<ViewState> = MutableLiveData()
-  val viewState : LiveData<ViewState> = _viewState
+  private val _viewState: MutableLiveData<ViewState> = MutableLiveData()
+  val viewState: LiveData<ViewState> = _viewState
 
   fun login(loginRequest: LoginRequest) = viewModelScope.launch {
-    _viewState.value=Loading
-    when(val res = loginUserUseCase.perform(loginRequest)){
+    _viewState.value = Loading
+    when (val res = loginUserUseCase.perform(loginRequest)) {
       is Failure -> _viewState.value = Error(res.message)
       NetworkError -> _viewState.value = Error("Network Error")
       is Success -> _viewState.value = ViewState.Success
@@ -42,5 +42,4 @@ class LoginVM @Inject constructor(
       else _viewState.value = Idle
     }
   }
-
 }

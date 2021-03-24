@@ -1,12 +1,11 @@
 package com.example.baseapp.ui.auth.signup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivitySignUpBinding
 import com.example.baseapp.ui.base.BaseActivity
 
-class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpVM>() {
+class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpVM>() {
 
   override fun getViewModelClass(): Class<SignUpVM> = SignUpVM::class.java
 
@@ -14,8 +13,5 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpVM>() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
   }
-
-
 }
