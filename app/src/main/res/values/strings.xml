@@ -1,3 +1,15 @@
 <resources>
   <string name="app_name">Base App</string>
+  <string name="login">Login</string>
+  <string name="logout">Logout</string>
+  <string name="username">Username</string>
+  <string name="email">Email</string>
+  <string name="password">Password</string>
+  <string name="register">Register</string>
+  <string name="text_sign_up">Sign Up</string>
+  <string name="text_e_mail">E Mail</string>
+  <string name="text_register">Register</string>
+  <string name="text_phone">Phone</string>
+  <string name="text_first_name">First Name</string>
+  <string name="text_last_name">Last Name</string>
 </resources>

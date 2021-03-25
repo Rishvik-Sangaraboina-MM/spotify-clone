@@ -5,7 +5,7 @@ import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityHomeBinding
 import com.example.baseapp.ui.base.BaseActivity
 
-class HomeActivity : BaseActivity<ActivityHomeBinding,HomeVM>() {
+class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>() {
 
   override fun getViewModelClass(): Class<HomeVM> = HomeVM::class.java
 
@@ -14,5 +14,4 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeVM>() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
   }
-
 }

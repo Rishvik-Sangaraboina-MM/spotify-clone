@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <data>
+
+    <variable
+        name="isLoading"
+        type="Boolean"
+        />
+
+  </data>
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".ui.login.LoginActivity"
+      android:background="@drawable/shutterstock_1472930963"
+      >
+
+    <LinearLayout
+        visibility="@{ !isLoading }"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/input_username"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_10dp"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/input_password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          app:passwordToggleEnabled="true"
+          android:layout_marginTop="@dimen/dimen_10dp"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/btn_login"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:layout_marginTop="@dimen/dimen_20dp"
+          android:text="@string/login"
+          />
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/btn_register"
+          style="@style/Widget.MaterialComponents.Button.TextButton"
+          android:textColor="@color/salmon"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/dimen_20dp"
+          android:text="@string/register"
+          />
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        visibility="@{isLoading}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
