@@ -1,0 +1,26 @@
+{
+  "data": {
+    "user": {
+      "_id": "60599c2d6c4a5e14017da2a8",
+      "socialIdentityProvider": null,
+      "socialIdentityId": null,
+      "isActive": false,
+      "isDeleted": false,
+      "isArchived": false,
+      "profileImage": null,
+      "email": "rrrishvik@gmail.com",
+      "firstName": "string",
+      "lastName": "string",
+      "userName": "hehe",
+      "role": "User",
+      "lastLoginDateUTC": "2021-03-23T07:43:41.759Z",
+      "lastActiveTimeUTC": "2021-03-23T07:43:41.759Z",
+      "createdAt": "2021-03-23T07:43:41.762Z",
+      "updatedAt": "2021-03-23T07:43:41.762Z",
+      "__v": 0
+    },
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDU5OWMyZDZjNGE1ZTE0MDE3ZGEyYTgiLCJlbWFpbCI6InJycmlzaHZpa0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6ImhlaGUiLCJpYXQiOjE2MTY2OTUzMzksImV4cCI6MTYxNzMwMDEzOX0.y-jhN8RUl3LlqWLZeftyq7KfDtYBoZTlQj61_b4NO0Q",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDU5OWMyZDZjNGE1ZTE0MDE3ZGEyYTgiLCJpYXQiOjE2MTY2OTUzMzksImV4cCI6MTYxOTI4NzMzOX0.hTydIlnGE_4J0rYNJ264RzTEtnHPzu_xwEbqwW4UXKQ"
+  },
+  "message": ""
+}
