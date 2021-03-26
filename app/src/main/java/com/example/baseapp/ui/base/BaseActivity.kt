@@ -1,7 +1,6 @@
 package com.example.baseapp.ui.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -24,7 +23,7 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
 
   private fun bindContentView(layoutId: Int) {
     binding = DataBindingUtil.setContentView(this, layoutId)
-    viewModel = ViewModelProvider(this,viewModelFactory).get(getViewModelClass())
+    viewModel = ViewModelProvider(this, viewModelFactory).get(getViewModelClass())
     binding.lifecycleOwner = this
   }
 

@@ -34,7 +34,6 @@ class NetworkModule {
   }
 
   @Provides
-  @Singleton
   @AuthBaseUrl
   fun provideAuthBaseUrl() = AppConstants.AUTH_BASE_URL
 
