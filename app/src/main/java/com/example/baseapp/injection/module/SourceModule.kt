@@ -8,18 +8,15 @@ import com.example.domain.source.IAuthLocalSource
 import com.example.domain.source.IAuthRemoteSource
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class SourceModule {
   @Provides
-  @Singleton
   fun provideAuthRemoteSource(authApi: AuthApi) : IAuthRemoteSource {
     return AuthRemoteSource(authApi)
   }
 
   @Provides
-  @Singleton
   fun provideAuthLocalSource(tokenManager: TokenManager) : IAuthLocalSource{
     return AuthLocalSource(tokenManager)
   }
