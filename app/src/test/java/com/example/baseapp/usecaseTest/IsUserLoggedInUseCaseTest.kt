@@ -49,6 +49,8 @@ class IsUserLoggedInUseCaseTest : BaseTest() {
     val result = loginUserUseCase.perform(loginRequest)
     assert(result is Success)
     assert(isUserLoggedInUseCase.perform())
+    assert(tokenManager.accessToken != null)
+    assert(tokenManager.refreshToken != null)
   }
 
   @Test
@@ -57,6 +59,8 @@ class IsUserLoggedInUseCaseTest : BaseTest() {
     assert(result is Success)
     logoutUserUseCase.perform()
     assert(!isUserLoggedInUseCase.perform())
+    assert(tokenManager.accessToken == null)
+    assert(tokenManager.refreshToken == null)
   }
 
   @After

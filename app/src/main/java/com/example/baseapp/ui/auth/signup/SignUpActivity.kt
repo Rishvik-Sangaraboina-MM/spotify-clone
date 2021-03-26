@@ -3,8 +3,8 @@ package com.example.baseapp.ui.auth.signup
 import android.os.Bundle
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivitySignUpBinding
-import com.example.baseapp.ui.base.ActivityNavigator
 import com.example.baseapp.ui.base.BaseActivity
+import com.example.baseapp.ui.base.openActivityWithSingleTop
 import com.example.baseapp.ui.home.HomeActivity
 import com.example.baseapp.util.ViewState.Error
 import com.example.baseapp.util.ViewState.Loading
@@ -39,7 +39,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpVM>() {
       binding.isLoading = it == Loading
       when (it) {
         is Error -> showToast(it.msg)
-        Success -> ActivityNavigator.startActivityWithSingleTop(this, HomeActivity::class.java)
+        Success -> openActivityWithSingleTop<HomeActivity>()
       }
     }
   }

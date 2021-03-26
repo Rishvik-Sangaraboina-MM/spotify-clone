@@ -6,6 +6,7 @@ import com.example.baseapp.injection.scope.ViewModelScope
 import com.example.baseapp.ui.auth.login.LoginVM
 import com.example.baseapp.ui.auth.signup.SignUpVM
 import com.example.baseapp.ui.home.HomeVM
+import com.example.baseapp.ui.home.account.AccountVM
 import com.example.baseapp.util.ViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -25,10 +26,15 @@ abstract class ViewModelFactoryModule {
   @Binds
   @IntoMap
   @ViewModelScope(LoginVM::class)
-  abstract fun bindLoginVM(loginVM: LoginVM) : ViewModel
+  abstract fun bindLoginVM(loginVM: LoginVM): ViewModel
 
   @Binds
   @IntoMap
   @ViewModelScope(SignUpVM::class)
-  abstract fun bindSignUpVM(signUpVM: SignUpVM) : ViewModel
+  abstract fun bindSignUpVM(signUpVM: SignUpVM): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelScope(AccountVM::class)
+  abstract fun bindAccountVM(accountVM: AccountVM): ViewModel
 }

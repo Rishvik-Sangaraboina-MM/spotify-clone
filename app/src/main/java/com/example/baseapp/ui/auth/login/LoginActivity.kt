@@ -4,15 +4,16 @@ import android.os.Bundle
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityLoginBinding
 import com.example.baseapp.ui.auth.signup.SignUpActivity
+import com.example.baseapp.ui.base.BaseActivity
+import com.example.baseapp.ui.base.openActivity
+import com.example.baseapp.ui.base.openActivityWithSingleTop
+import com.example.baseapp.ui.home.HomeActivity
 import com.example.baseapp.util.ViewState.Error
 import com.example.baseapp.util.ViewState.Loading
 import com.example.baseapp.util.ViewState.Success
-import com.example.baseapp.ui.base.ActivityNavigator
-import com.example.baseapp.ui.base.BaseActivity
-import com.example.baseapp.ui.home.HomeActivity
 import com.example.domain.entity.LoginRequest
 
-class LoginActivity : BaseActivity<ActivityLoginBinding,LoginVM>() {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginVM>() {
 
   override fun getViewModelClass(): Class<LoginVM> = LoginVM::class.java
 
@@ -25,7 +26,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding,LoginVM>() {
     addObservers()
   }
 
-  private fun addListeners(){
+  private fun addListeners() {
     binding.btnLogin.setOnClickListener {
       val email = binding.editEmail.text.toString()
       val password = binding.editPassword.text.toString()
@@ -33,23 +34,24 @@ class LoginActivity : BaseActivity<ActivityLoginBinding,LoginVM>() {
     }
 
     binding.btnRegister.setOnClickListener {
-      ActivityNavigator.startActivity(this,SignUpActivity::class.java)
+      openActivity<SignUpActivity>()
     }
   }
 
-  private fun addObservers(){
-    viewModel.viewState.observe(this){
-      binding.isLoading = it==Loading
-      when(it){
+  private fun addObservers() {
+    viewModel.viewState.observe(this) {
+      binding.isLoading = it == Loading
+      when (it) {
         is Error -> showToast(it.msg)
-        Success -> ActivityNavigator.startActivityWithSingleTop(this,HomeActivity::class.java)
+        Success -> openActivityWithSingleTop<HomeActivity>()
       }
     }
   }
 
-  private fun login(email : String, password : String){
-
-    viewModel.login(LoginRequest(email,"email",password,null))
+  private fun login(
+    email: String,
+    password: String
+  ) {
+    viewModel.login(LoginRequest(email, "email", password, null))
   }
-
 }
