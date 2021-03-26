@@ -11,13 +11,14 @@ import dagger.Provides
 
 @Module
 class SourceModule {
+
   @Provides
-  fun provideAuthRemoteSource(authApi: AuthApi) : IAuthRemoteSource {
+  fun provideAuthRemoteSource(authApi: AuthApi): IAuthRemoteSource {
     return AuthRemoteSource(authApi)
   }
 
   @Provides
-  fun provideAuthLocalSource(tokenManager: TokenManager) : IAuthLocalSource{
+  fun provideAuthLocalSource(tokenManager: TokenManager): IAuthLocalSource {
     return AuthLocalSource(tokenManager)
   }
 }

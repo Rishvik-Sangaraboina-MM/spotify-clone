@@ -11,10 +11,9 @@ interface IAuthRepo {
     loginRequest: LoginRequest
   ): SafeResult<LoginResponse>
 
-  suspend fun signUp(signUpRequest: SignUpRequest) : SafeResult<LoginResponse>
+  suspend fun signUp(signUpRequest: SignUpRequest): SafeResult<LoginResponse>
 
   suspend fun logout(): SafeResult<Unit>
 
-  suspend fun isUserLoggedIn() : Boolean
-
+  suspend fun isUserLoggedIn(): Boolean
 }

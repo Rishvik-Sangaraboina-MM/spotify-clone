@@ -16,12 +16,12 @@ import dagger.multibindings.IntoMap
 abstract class ViewModelFactoryModule {
 
   @Binds
-  abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory) : ViewModelProvider.Factory
+  abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 
   @Binds
   @IntoMap
   @ViewModelScope(HomeVM::class)
-  abstract fun bindHomeVM(homeVM: HomeVM) : ViewModel
+  abstract fun bindHomeVM(homeVM: HomeVM): ViewModel
 
   @Binds
   @IntoMap

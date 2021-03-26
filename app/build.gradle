@@ -83,5 +83,4 @@ dependencies {
 
   //roboelectric
   testImplementation 'org.robolectric:robolectric:4.5.1'
-
 }

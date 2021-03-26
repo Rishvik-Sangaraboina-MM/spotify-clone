@@ -15,14 +15,14 @@ import com.example.domain.util.SafeResult.Success
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SignUpVM @Inject constructor(private val signUpUserUseCase: SignUpUserUseCase): ViewModel() {
+class SignUpVM @Inject constructor(private val signUpUserUseCase: SignUpUserUseCase) : ViewModel() {
 
-  private val _viewState : MutableLiveData<ViewState> = MutableLiveData()
-  val viewState : LiveData<ViewState> = _viewState
+  private val _viewState: MutableLiveData<ViewState> = MutableLiveData()
+  val viewState: LiveData<ViewState> = _viewState
 
   fun signUp(signUpRequest: SignUpRequest) = viewModelScope.launch {
-    _viewState.value= Loading
-    when(val res = signUpUserUseCase.perform(signUpRequest)){
+    _viewState.value = Loading
+    when (val res = signUpUserUseCase.perform(signUpRequest)) {
       is Failure -> _viewState.value = Error(res.message)
       NetworkError -> _viewState.value = Error("Network Error")
       is Success -> _viewState.value = ViewState.Success

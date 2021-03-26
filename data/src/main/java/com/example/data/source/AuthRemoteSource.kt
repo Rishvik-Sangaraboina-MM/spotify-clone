@@ -8,9 +8,6 @@ import com.example.domain.entity.LoginResponse
 import com.example.domain.entity.SignUpRequest
 import com.example.domain.source.IAuthRemoteSource
 import com.example.domain.util.SafeResult
-import com.example.domain.util.SafeResult.Failure
-import com.example.domain.util.SafeResult.NetworkError
-import com.example.domain.util.SafeResult.Success
 
 class AuthRemoteSource(private val authApi: AuthApi) : IAuthRemoteSource {
   override suspend fun login(loginRequest: LoginRequest): SafeResult<ApiResponse<LoginResponse>> {

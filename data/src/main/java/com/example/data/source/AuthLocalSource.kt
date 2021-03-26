@@ -8,7 +8,7 @@ class AuthLocalSource(private val tokenManager: TokenManager) : IAuthLocalSource
     accessToken: String,
     refreshToken: String
   ) {
-    tokenManager.saveTokens(accessToken,refreshToken)
+    tokenManager.saveTokens(accessToken, refreshToken)
   }
 
   override suspend fun deleteTokens() {

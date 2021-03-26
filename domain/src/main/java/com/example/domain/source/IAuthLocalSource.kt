@@ -5,8 +5,8 @@ interface IAuthLocalSource {
     accessToken: String,
     refreshToken: String
   )
+
   suspend fun deleteTokens()
 
-  suspend fun isUserLoggedIn() : Boolean
-
+  suspend fun isUserLoggedIn(): Boolean
 }

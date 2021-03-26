@@ -10,7 +10,10 @@ import dagger.Provides
 @Module
 class RepositoryModule {
   @Provides
-  fun provideAuthRepo(authLocalSource: IAuthLocalSource,authRemoteSource: IAuthRemoteSource) : IAuthRepo{
-    return AuthRepo(authLocalSource,authRemoteSource)
+  fun provideAuthRepo(
+    authLocalSource: IAuthLocalSource,
+    authRemoteSource: IAuthRemoteSource
+  ): IAuthRepo {
+    return AuthRepo(authLocalSource, authRemoteSource)
   }
 }

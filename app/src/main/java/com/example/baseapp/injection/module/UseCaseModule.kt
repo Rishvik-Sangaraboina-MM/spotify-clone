@@ -22,12 +22,12 @@ class UseCaseModule {
   }
 
   @Provides
-  fun provideIsUserLoggedInUseCase(authRepo: IAuthRepo) : IsUserLoggedInUseCase{
+  fun provideIsUserLoggedInUseCase(authRepo: IAuthRepo): IsUserLoggedInUseCase {
     return IsUserLoggedInUseCase(authRepo)
   }
 
   @Provides
-  fun provideSignUpUserUseCase(authRepo: IAuthRepo) : SignUpUserUseCase{
+  fun provideSignUpUserUseCase(authRepo: IAuthRepo): SignUpUserUseCase {
     return SignUpUserUseCase(authRepo)
   }
 }
