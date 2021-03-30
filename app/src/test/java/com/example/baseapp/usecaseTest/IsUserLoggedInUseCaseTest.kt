@@ -10,9 +10,6 @@ import com.example.domain.usecase.auth.LoginUserUseCase
 import com.example.domain.usecase.auth.LogoutUserUseCase
 import com.example.domain.util.SafeResult.Success
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 import javax.inject.Inject
 
@@ -32,15 +29,12 @@ class IsUserLoggedInUseCaseTest : BaseTest() {
 
   private val loginRequest = LoginRequest("rrrishvik@gmail.com", "email", "cmHunk@789", null)
 
-  @Inject
-  lateinit var mockWebServer: MockWebServer
-
   override fun injectIntoDagger(testAppComponent: TestAppComponent) {
     testAppComponent.inject(this)
   }
 
-  @Before
-  fun before() {
+  override fun setup() {
+    super.setup()
     mockWebServer.enqueueResponse("responses/login_response.json")
   }
 
@@ -63,8 +57,4 @@ class IsUserLoggedInUseCaseTest : BaseTest() {
     assert(tokenManager.refreshToken == null)
   }
 
-  @After
-  fun tearDown() {
-    mockWebServer.shutdown()
-  }
 }

@@ -24,8 +24,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpVM>() {
   }
 
   private fun addListeners() {
-    binding.btnSignup.setOnClickListener {
-      binding.apply {
+    with(binding) {
+      btnSignup.setOnClickListener {
         signUp(
           editFirstName.text.toString(), editLastName.text.toString(), editUsername.text.toString(),
           editEmail.text.toString(), editPassword.text.toString()

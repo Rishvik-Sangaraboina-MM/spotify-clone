@@ -11,18 +11,12 @@ import com.example.domain.usecase.auth.LoginUserUseCase
 import com.example.domain.util.SafeResult.Failure
 import com.example.domain.util.SafeResult.Success
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 import org.robolectric.annotation.Config
 import javax.inject.Inject
 
 @Config(sdk = [Build.VERSION_CODES.P])
 class LoginUserUseCaseTest : BaseTest() {
-
-  @Inject
-  lateinit var mockWebServer: MockWebServer
 
   @Inject
   lateinit var loginUserUseCase: LoginUserUseCase
@@ -36,8 +30,8 @@ class LoginUserUseCaseTest : BaseTest() {
     testAppComponent.inject(this)
   }
 
-  @Before
-  fun before() {
+  override fun setup() {
+    super.setup()
     mockWebServer.enqueueResponse("responses/login_response.json")
   }
 
@@ -64,8 +58,4 @@ class LoginUserUseCaseTest : BaseTest() {
     assert(result is Failure)
   }
 
-  @After
-  fun tearDown() {
-    mockWebServer.shutdown()
-  }
 }

@@ -4,14 +4,19 @@ import android.os.Build
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.baseapp.injection.TestAppComponent
+import okhttp3.mockwebserver.MockWebServer
+import org.junit.After
 import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
+import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
 @Config(application = TestApplication::class, sdk = [Build.VERSION_CODES.O_MR1])
 abstract class BaseTest {
+
+  @Inject
+  lateinit var mockWebServer: MockWebServer
 
   private lateinit var application: TestApplication
 
@@ -21,10 +26,10 @@ abstract class BaseTest {
     injectIntoDagger(application.provideComponent())
   }
 
-  @Test
-  fun test() {
-    assert(true)
-  }
-
   abstract fun injectIntoDagger(testAppComponent: TestAppComponent)
+
+  @After
+  fun tearDown() {
+    mockWebServer.shutdown()
+  }
 }

@@ -27,14 +27,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginVM>() {
   }
 
   private fun addListeners() {
-    binding.btnLogin.setOnClickListener {
-      val email = binding.editEmail.text.toString()
-      val password = binding.editPassword.text.toString()
-      login(email, password)
-    }
+    with(binding) {
+      btnLogin.setOnClickListener {
+        val email = editEmail.text.toString()
+        val password = editPassword.text.toString()
+        login(email, password)
+      }
 
-    binding.btnRegister.setOnClickListener {
-      openActivity<SignUpActivity>()
+      btnRegister.setOnClickListener {
+        openActivity<SignUpActivity>()
+      }
     }
   }
 
