@@ -1,0 +1,33 @@
+{
+  "data": {
+    "user": {
+      "socialIdentityProvider": null,
+      "socialIdentityId": null,
+      "isActive": true,
+      "isDeleted": false,
+      "isArchived": false,
+      "profileImage": null,
+      "createdBy": null,
+      "isTotpVerificationEnabled": false,
+      "totpSecret": null,
+      "isOtpVerificationEnabled": false,
+      "phoneNumber": null,
+      "otpVerificationRequestId": null,
+      "passwordResetToken": null,
+      "_id": "605d3d9b17093732545ecc02",
+      "email": "rrrishvikk@gmail.com",
+      "firstName": "Rishvikk",
+      "lastName": "Sangaraboina",
+      "userName": "rishvik_0077",
+      "role": "User",
+      "lastLoginDateUTC": "2021-03-26T01:49:15.350Z",
+      "lastActiveTimeUTC": "2021-03-26T01:49:15.350Z",
+      "createdAt": "2021-03-26T01:49:15.350Z",
+      "updatedAt": "2021-03-26T01:49:15.350Z",
+      "__v": 0
+    },
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDVkM2Q5YjE3MDkzNzMyNTQ1ZWNjMDIiLCJlbWFpbCI6InJycmlzaHZpa2tAZ21haWwuY29tIiwidXNlck5hbWUiOiJyaXNodmlrXzAwNzciLCJpYXQiOjE2MTY3MjMzNTUsImV4cCI6MTYxNzMyODE1NX0.vIP8NCV4qoJVImH2qItEfTcOBf6afr9_nF-dSSY7Qqg",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDVkM2Q5YjE3MDkzNzMyNTQ1ZWNjMDIiLCJpYXQiOjE2MTY3MjMzNTUsImV4cCI6MTYxOTMxNTM1NX0.nP0eU8_2O-ZKgT_QhRUq0cGJAgBOc9TRYU7aiJ3PRNg"
+  },
+  "message": ""
+}

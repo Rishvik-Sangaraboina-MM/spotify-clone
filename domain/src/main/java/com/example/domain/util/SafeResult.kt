@@ -6,6 +6,7 @@ sealed class SafeResult<out T> {
     val exception: Exception? = Exception("Unknown Error"),
     val message: String = exception?.localizedMessage ?: ""
   ) : SafeResult<Nothing>()
+
   object NetworkError : SafeResult<Nothing>()
 
   override fun toString(): String {

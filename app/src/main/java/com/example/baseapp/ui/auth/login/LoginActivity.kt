@@ -3,7 +3,9 @@ package com.example.baseapp.ui.auth.login
 import android.os.Bundle
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityLoginBinding
+import com.example.baseapp.ui.auth.signup.SignUpActivity
 import com.example.baseapp.ui.base.BaseActivity
+import com.example.baseapp.ui.base.openActivity
 import com.example.baseapp.ui.base.openActivityWithSingleTop
 import com.example.baseapp.ui.home.HomeActivity
 import com.example.baseapp.util.ViewState.Error
@@ -25,10 +27,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginVM>() {
   }
 
   private fun addListeners() {
-    binding.btnLogin.setOnClickListener {
-      val email = binding.editEmail.text.toString()
-      val password = binding.editPassword.text.toString()
-      login(email, password)
+    with(binding) {
+      btnLogin.setOnClickListener {
+        val email = editEmail.text.toString()
+        val password = editPassword.text.toString()
+        login(email, password)
+      }
+
+      btnRegister.setOnClickListener {
+        openActivity<SignUpActivity>()
+      }
     }
   }
 
