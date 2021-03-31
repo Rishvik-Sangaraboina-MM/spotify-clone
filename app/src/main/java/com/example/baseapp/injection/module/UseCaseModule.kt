@@ -1,10 +1,12 @@
 package com.example.baseapp.injection.module
 
 import com.example.domain.repository.IAuthRepo
+import com.example.domain.repository.IMusicRepo
 import com.example.domain.usecase.auth.IsUserLoggedInUseCase
 import com.example.domain.usecase.auth.LoginUserUseCase
 import com.example.domain.usecase.auth.LogoutUserUseCase
 import com.example.domain.usecase.auth.SignUpUserUseCase
+import com.example.domain.usecase.music.FetchMusicUseCase
 import dagger.Module
 import dagger.Provides
 
@@ -29,5 +31,10 @@ class UseCaseModule {
   @Provides
   fun provideSignUpUserUseCase(authRepo: IAuthRepo): SignUpUserUseCase {
     return SignUpUserUseCase(authRepo)
+  }
+
+  @Provides
+  fun provideFetchMusicUserCase(musicRepo: IMusicRepo): FetchMusicUseCase {
+    return FetchMusicUseCase(musicRepo)
   }
 }

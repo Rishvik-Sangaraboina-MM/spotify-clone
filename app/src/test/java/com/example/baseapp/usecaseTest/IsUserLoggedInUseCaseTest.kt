@@ -56,5 +56,4 @@ class IsUserLoggedInUseCaseTest : BaseTest() {
     assert(tokenManager.accessToken == null)
     assert(tokenManager.refreshToken == null)
   }
-
 }

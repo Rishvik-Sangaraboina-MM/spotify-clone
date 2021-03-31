@@ -58,5 +58,4 @@ class SignUpUserUseCase : BaseTest() {
     val result = signUpUserUseCase.perform(signUpRequest)
     assert(result is Failure)
   }
-
 }
