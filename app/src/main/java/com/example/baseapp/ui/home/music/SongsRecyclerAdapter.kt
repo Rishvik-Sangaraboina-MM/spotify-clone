@@ -38,12 +38,14 @@ class SongsRecyclerAdapter : RecyclerView.Adapter<SongViewHolder>() {
   inner class SongViewHolder(private val binding: ItemSongBinding) : ViewHolder(binding.root) {
     fun bind(position: Int) {
       val songResponse = list[position]
-      binding.songTitle.text = songResponse.trackName
-      binding.songArtist.text = songResponse.artistName
-      Glide.with(binding.root)
-        .load(songResponse.artworkUrl100)
-        .centerCrop()
-        .into(binding.songPreview)
+      with(binding) {
+        songTitle.text = songResponse.trackName
+        songArtist.text = songResponse.artistName
+        Glide.with(root)
+          .load(songResponse.artworkUrl100)
+          .centerCrop()
+          .into(songPreview)
+      }
     }
   }
 }
