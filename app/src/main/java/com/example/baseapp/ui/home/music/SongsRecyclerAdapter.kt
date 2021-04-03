@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
 import com.example.baseapp.databinding.ItemSongBinding
 import com.example.baseapp.ui.home.music.SongsRecyclerAdapter.SongViewHolder
 import com.example.domain.entity.SongResponse
@@ -41,10 +40,7 @@ class SongsRecyclerAdapter : RecyclerView.Adapter<SongViewHolder>() {
       with(binding) {
         songTitle.text = songResponse.trackName
         songArtist.text = songResponse.artistName
-        Glide.with(root)
-          .load(songResponse.artworkUrl100)
-          .centerCrop()
-          .into(songPreview)
+        imgUrl = songResponse.artworkUrl100
       }
     }
   }
