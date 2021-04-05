@@ -6,8 +6,11 @@
       motion:constraintSetEnd="@+id/end"
       motion:constraintSetStart="@id/start"
       motion:duration="1000">
-    <KeyFrameSet></KeyFrameSet>
-    <OnSwipe motion:touchRegionId="@+id/frameLayout" />
+
+    <OnSwipe
+        motion:dragDirection="dragUp"
+        motion:touchAnchorId="@id/player_layout"
+        motion:touchRegionId="@id/player_layout" />
 
   </Transition>
 
@@ -72,7 +75,7 @@
         motion:layout_constraintHorizontal_bias="1.0"
         motion:layout_constraintTop_toBottomOf="@+id/guideline2" />
     <Constraint
-        android:id="@+id/frameLayout"
+        android:id="@+id/player_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         motion:layout_constraintBottom_toTopOf="@id/bottomNavigationView"

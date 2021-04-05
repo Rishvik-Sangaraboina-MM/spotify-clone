@@ -6,6 +6,7 @@ import com.example.baseapp.injection.module.AppModule
 import com.example.baseapp.injection.module.NetworkModule
 import com.example.baseapp.injection.module.PreferenceModule
 import com.example.baseapp.injection.module.RepositoryModule
+import com.example.baseapp.injection.module.ServiceModule
 import com.example.baseapp.injection.module.SourceModule
 import com.example.baseapp.injection.module.UseCaseModule
 import com.example.baseapp.injection.module.ViewModelFactoryModule
@@ -28,7 +29,8 @@ import javax.inject.Singleton
     SourceModule::class,
     UseCaseModule::class,
     NetworkModule::class,
-    PreferenceModule::class
+    PreferenceModule::class,
+    ServiceModule::class
   ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {

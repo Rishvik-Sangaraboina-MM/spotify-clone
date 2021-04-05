@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.baseapp.service.MusicService
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -15,6 +16,9 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
 
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
+
+  @Inject
+  lateinit var musicService: MusicService
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

@@ -10,4 +10,6 @@ object AppConstants {
   const val PLAYLIST_SLEEP = "Sleep"
   const val PLAYLIST_ENERGY = "Energy"
   const val PLAYLIST_WORKOUT = "Workout"
+  const val SERVICE_TAG = "MusicService"
+  const val MEDIA_ROOT_ID = "rood_id"
 }
