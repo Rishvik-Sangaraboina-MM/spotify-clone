@@ -8,6 +8,8 @@ interface MusicApi {
   @GET("search")
   suspend fun search(
     @Query("term")
-    term: String
+    term: String,
+    @Query("entity")
+    entity: String = "song"
   ): MusicResponse
 }
