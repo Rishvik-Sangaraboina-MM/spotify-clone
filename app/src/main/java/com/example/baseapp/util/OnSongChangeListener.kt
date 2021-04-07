@@ -1,7 +1,7 @@
 package com.example.baseapp.util
 
-import android.support.v4.media.MediaMetadataCompat
+import com.example.domain.entity.SongResponse
 
 interface OnSongChangeListener {
-  fun onSongChange(mediaMetadataCompat: MediaMetadataCompat)
+  fun onSongChange(songResponse: SongResponse?)
 }

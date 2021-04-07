@@ -1,15 +1,16 @@
 package com.example.baseapp.ui.home
 
 import android.os.Bundle
-import android.support.v4.media.MediaMetadataCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityHomeBinding
 import com.example.baseapp.service.MusicService
 import com.example.baseapp.ui.base.BaseActivity
 import com.example.baseapp.util.OnSongChangeListener
 import com.example.baseapp.util.SongItemClickListener
+import com.example.domain.entity.SongResponse
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
@@ -26,6 +27,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     initUI()
+    addListeners()
   }
 
   private fun initUI() {
@@ -36,8 +38,31 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
     }
   }
 
+  private fun addListeners() {
+    with(binding) {
+      playPause.setOnClickListener {
+        if (musicService.playPause())
+          Glide.with(it.context).load(R.drawable.ic_pause).into(playPause)
+        else
+          Glide.with(it.context).load(R.drawable.ic_play).into(playPause)
+      }
+      skipNext.setOnClickListener {
+        musicService.skipNext()
+      }
+      skipPrevious.setOnClickListener {
+        musicService.skipPrevious()
+      }
+      forward.setOnClickListener {
+        musicService.forward()
+      }
+      rewind.setOnClickListener {
+        musicService.rewind()
+      }
+    }
+  }
+
   override fun onSongItemClick(
-    songs: List<MediaMetadataCompat>,
+    songs: List<SongResponse>,
     index: Int
   ) {
     musicService.setOnSongChangeListener(this)
@@ -45,8 +70,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
     binding.motionLayout.transitionToEnd()
   }
 
-  override fun onSongChange(mediaMetadataCompat: MediaMetadataCompat) {
-    binding.trackMetadata = mediaMetadataCompat
+  override fun onSongChange(songResponse: SongResponse?) {
+    binding.song = songResponse
   }
 
   override fun onBackPressed() {

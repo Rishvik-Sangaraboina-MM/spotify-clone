@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.baseapp.databinding.ItemSongBinding
 import com.example.baseapp.ui.home.music.SongsRecyclerAdapter.SongViewHolder
 import com.example.baseapp.util.SongItemClickListener
-import com.example.baseapp.util.mapToMediaMetaDataCompatList
 import com.example.domain.entity.SongResponse
 
 class SongsRecyclerAdapter : RecyclerView.Adapter<SongViewHolder>() {
 
-  private val list = arrayListOf<SongResponse>()
+  private var list = listOf<SongResponse>()
 
   private lateinit var songItemClickListener: SongItemClickListener
 
@@ -34,7 +33,7 @@ class SongsRecyclerAdapter : RecyclerView.Adapter<SongViewHolder>() {
   override fun getItemCount(): Int = list.size
 
   fun addResponse(responses: List<SongResponse>) {
-    list.addAll(responses)
+    list = responses
     notifyDataSetChanged()
   }
 
@@ -50,7 +49,7 @@ class SongsRecyclerAdapter : RecyclerView.Adapter<SongViewHolder>() {
         songArtist.text = songResponse.artistName
         imgUrl = songResponse.artworkUrl100
         binding.root.setOnClickListener {
-          songItemClickListener.onSongItemClick(mapToMediaMetaDataCompatList(list), position)
+          songItemClickListener.onSongItemClick(list, position)
         }
       }
     }

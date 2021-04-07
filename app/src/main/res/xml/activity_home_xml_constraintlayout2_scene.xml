@@ -8,25 +8,10 @@
       motion:constraintSetStart="@id/start"
       motion:duration="1000">
 
-    <KeyFrameSet>
-      <KeyAttribute
-          motion:motionTarget="@id/preview"
-          motion:framePosition="100">
-        <CustomAttribute
-            motion:attributeName="layout_width"
-            motion:customPixelDimension="100dp" />
-        <CustomAttribute
-            motion:attributeName="layout_height"
-            motion:customPixelDimension="100dp" />
-
-
-      </KeyAttribute>
-    </KeyFrameSet>
-
     <OnSwipe
         motion:dragDirection="dragUp"
-        motion:touchAnchorId="@id/player_layout"
-        motion:touchRegionId="@id/player_layout" />
+        motion:touchRegionId="@id/linearLayout" />
+
 
   </Transition>
 
@@ -35,6 +20,12 @@
   </ConstraintSet>
 
   <ConstraintSet android:id="@+id/end">
+    <Constraint
+        android:id="@+id/player_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        motion:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        motion:layout_constraintTop_toTopOf="parent" />
     <Constraint
         android:id="@+id/bottomNavigationView"
         motion:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +51,7 @@
         motion:layout_constraintTop_toTopOf="parent"
         android:id="@+id/preview"
         motion:layout_constraintEnd_toEndOf="parent"
-        motion:layout_constraintBottom_toTopOf="@+id/seekBar"></Constraint>
+        motion:layout_constraintBottom_toTopOf="@+id/seekBar" />
     <Constraint
         android:layout_height="wrap_content"
         android:id="@+id/music_player_title"
@@ -90,11 +81,5 @@
         android:layout_marginTop="8dp"
         motion:layout_constraintHorizontal_bias="1.0"
         motion:layout_constraintTop_toBottomOf="@+id/guideline2" />
-    <Constraint
-        android:id="@+id/player_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        motion:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
-        motion:layout_constraintTop_toTopOf="parent" />
   </ConstraintSet>
 </MotionScene>

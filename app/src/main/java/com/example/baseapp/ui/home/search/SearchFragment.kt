@@ -36,7 +36,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchVM>() {
     binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
       override fun onQueryTextSubmit(query: String?): Boolean {
         query?.let { viewModel.search(it) }
-        return true
+        return false
       }
 
       override fun onQueryTextChange(newText: String?): Boolean = false

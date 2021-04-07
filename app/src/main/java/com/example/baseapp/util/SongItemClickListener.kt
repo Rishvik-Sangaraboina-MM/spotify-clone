@@ -1,10 +1,10 @@
 package com.example.baseapp.util
 
-import android.support.v4.media.MediaMetadataCompat
+import com.example.domain.entity.SongResponse
 
 interface SongItemClickListener {
   fun onSongItemClick(
-    songs: List<MediaMetadataCompat>,
+    songs: List<SongResponse>,
     index: Int
   )
 }
