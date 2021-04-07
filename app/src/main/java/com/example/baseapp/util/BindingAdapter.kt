@@ -19,7 +19,7 @@ object BindingAdapter {
   @BindingAdapter("imgSrcUrl")
   fun setImage(
     imageView: ImageView,
-    url: String
+    url: String?
   ) {
     Glide.with(imageView.context)
       .load(url)

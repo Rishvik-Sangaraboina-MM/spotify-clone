@@ -2,10 +2,26 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
+
   <Transition
       motion:constraintSetEnd="@+id/end"
       motion:constraintSetStart="@id/start"
       motion:duration="1000">
+
+    <KeyFrameSet>
+      <KeyAttribute
+          motion:motionTarget="@id/preview"
+          motion:framePosition="100">
+        <CustomAttribute
+            motion:attributeName="layout_width"
+            motion:customPixelDimension="100dp" />
+        <CustomAttribute
+            motion:attributeName="layout_height"
+            motion:customPixelDimension="100dp" />
+
+
+      </KeyAttribute>
+    </KeyFrameSet>
 
     <OnSwipe
         motion:dragDirection="dragUp"
@@ -44,7 +60,7 @@
         motion:layout_constraintTop_toTopOf="parent"
         android:id="@+id/preview"
         motion:layout_constraintEnd_toEndOf="parent"
-        motion:layout_constraintBottom_toTopOf="@+id/seekBar" />
+        motion:layout_constraintBottom_toTopOf="@+id/seekBar"></Constraint>
     <Constraint
         android:layout_height="wrap_content"
         android:id="@+id/music_player_title"

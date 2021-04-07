@@ -58,8 +58,8 @@ class MusicVM @Inject constructor(private val fetchMusicUseCase: FetchMusicUseCa
       is Failure -> _viewState.value = Error("Api Failure")
       NetworkError -> _viewState.value = Error("Network Failure")
       is Success -> {
-        _viewState.value = ViewState.Success
         map[term]?.value = res.data
+        _viewState.value = ViewState.Success
       }
     }
   }

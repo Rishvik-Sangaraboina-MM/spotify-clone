@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
   <data>
-
+    <variable
+        name="trackMetadata"
+        type="android.support.v4.media.MediaMetadataCompat"
+        />
   </data>
   <androidx.constraintlayout.motion.widget.MotionLayout
+      android:id="@+id/motionLayout"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:layoutDescription="@xml/activity_home_xml_constraintlayout2_scene"
       tools:context=".ui.home.HomeActivity"
       >
-
-
     <fragment
         android:id="@+id/nav_host_fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -28,22 +30,25 @@
         />
     <FrameLayout
         android:id="@+id/player_layout"
-        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_width="match_parent"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintTop_toTopOf="@id/linearLayout"
         >
 
     </FrameLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/preview"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        imgSrcUrl="@{trackMetadata.getString(trackMetadata.METADATA_KEY_ART_URI)}"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_menu"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars"
         />
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -52,8 +57,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
-        android:paddingTop="@dimen/dimen_8dp"
         android:gravity="center"
+        android:paddingTop="@dimen/dimen_8dp"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/music_player_title"
@@ -95,7 +100,6 @@
           app:srcCompat="@drawable/ic_skip_next"
           />
     </LinearLayout>
-
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="0dp"
@@ -107,16 +111,7 @@
         app:layout_constraintStart_toStartOf="@+id/music_player_title"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         />
-    <ImageView
-        android:id="@+id/preview"
-        android:layout_width="48dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        tools:srcCompat="@tools:sample/avatars"
-        />
+
     <TextView
         android:id="@+id/music_player_title"
         android:layout_width="108dp"
@@ -126,7 +121,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:text="Title"
+        android:text="@{trackMetadata.getString(trackMetadata.METADATA_KEY_TITLE)}"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/preview"
@@ -140,7 +135,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:text="Artist"
+        android:text="@{trackMetadata.getString(trackMetadata.METADATA_KEY_ALBUM_ARTIST)}"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         app:layout_constraintEnd_toEndOf="@+id/music_player_title"
         app:layout_constraintStart_toStartOf="@+id/music_player_title"
@@ -152,6 +147,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.67"
+        />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_menu"
         />
   </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
