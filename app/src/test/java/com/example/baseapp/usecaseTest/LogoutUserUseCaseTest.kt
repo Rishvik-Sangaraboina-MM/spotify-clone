@@ -43,5 +43,4 @@ class LogoutUserUseCaseTest : BaseTest() {
     assert(tokenManager.refreshToken == null)
     assert(tokenManager.accessToken == null)
   }
-
 }

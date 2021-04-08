@@ -7,6 +7,7 @@ import com.example.baseapp.ui.auth.login.LoginVM
 import com.example.baseapp.ui.auth.signup.SignUpVM
 import com.example.baseapp.ui.home.HomeVM
 import com.example.baseapp.ui.home.account.AccountVM
+import com.example.baseapp.ui.home.music.MusicVM
 import com.example.baseapp.util.ViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -37,4 +38,9 @@ abstract class ViewModelFactoryModule {
   @IntoMap
   @ViewModelScope(AccountVM::class)
   abstract fun bindAccountVM(accountVM: AccountVM): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelScope(MusicVM::class)
+  abstract fun bindMusicVM(musicVM: MusicVM): ViewModel
 }

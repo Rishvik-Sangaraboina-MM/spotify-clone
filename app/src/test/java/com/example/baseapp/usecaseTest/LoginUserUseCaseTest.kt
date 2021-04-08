@@ -57,5 +57,4 @@ class LoginUserUseCaseTest : BaseTest() {
     val result = loginUserUseCase.perform(loginRequest)
     assert(result is Failure)
   }
-
 }
