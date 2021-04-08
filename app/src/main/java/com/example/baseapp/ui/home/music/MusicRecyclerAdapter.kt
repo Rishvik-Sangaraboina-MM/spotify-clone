@@ -5,18 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baseapp.databinding.LayoutMusicListBinding
 import com.example.baseapp.ui.home.music.MusicRecyclerAdapter.MusicViewHolder
-import com.example.domain.entity.SongResponse
+import com.example.domain.entity.Song
 
 class MusicRecyclerAdapter(private val title: String) : RecyclerView.Adapter<MusicViewHolder>() {
 
-  private val list = arrayListOf<SongResponse>()
-
-  constructor(
-    title: String,
-    responses: List<SongResponse>
-  ) : this(title) {
-    list.addAll(responses)
-  }
+  private val list = arrayListOf<Song>()
 
   override fun onCreateViewHolder(
     parent: ViewGroup,
@@ -35,7 +28,7 @@ class MusicRecyclerAdapter(private val title: String) : RecyclerView.Adapter<Mus
 
   override fun getItemCount(): Int = 1
 
-  fun addResponse(responses: List<SongResponse>) {
+  fun addResponse(responses: List<Song>) {
     list.addAll(responses)
     notifyDataSetChanged()
   }

@@ -1,6 +1,6 @@
-package com.example.domain.entity
+package com.example.data.remote.model.auth
 
-data class ApiResponse<T>(
+data class AuthApiResponse<T>(
   val message: String,
   val data: T
 ) {
