@@ -1,6 +1,6 @@
 package com.example.data.remote.api
 
-import com.example.domain.entity.MusicResponse
+import com.example.data.remote.model.music.MusicResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

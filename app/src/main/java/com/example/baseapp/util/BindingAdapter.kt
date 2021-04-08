@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.example.baseapp.R
 
 object BindingAdapter {
   @JvmStatic
@@ -20,12 +19,11 @@ object BindingAdapter {
   @BindingAdapter("imgSrcUrl")
   fun setImage(
     imageView: ImageView,
-    url: String?
+    url: String
   ) {
     Glide.with(imageView.context)
       .load(url)
       .centerCrop()
-      .placeholder(R.drawable.exo_styled_controls_audiotrack)
       .into(imageView)
   }
 }
