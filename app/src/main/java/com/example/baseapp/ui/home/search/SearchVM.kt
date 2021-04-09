@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.baseapp.util.ViewState
 import com.example.baseapp.util.ViewState.Error
 import com.example.baseapp.util.ViewState.Loading
-import com.example.domain.entity.SongResponse
+import com.example.domain.entity.Song
 import com.example.domain.usecase.music.FetchMusicUseCase
 import com.example.domain.util.SafeResult.Failure
 import com.example.domain.util.SafeResult.NetworkError
@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchVM @Inject constructor(private val fetchMusicUseCase: FetchMusicUseCase) : ViewModel() {
-  private val _searchLiveData: MutableLiveData<List<SongResponse>> = MutableLiveData()
-  val searchLiveData: LiveData<List<SongResponse>> = _searchLiveData
+  private val _searchLiveData: MutableLiveData<List<Song>> = MutableLiveData()
+  val searchLiveData: LiveData<List<Song>> = _searchLiveData
 
   private val _viewState: MutableLiveData<ViewState> = MutableLiveData()
   val viewState: LiveData<ViewState> = _viewState

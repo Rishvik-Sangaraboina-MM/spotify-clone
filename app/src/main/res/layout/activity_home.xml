@@ -6,7 +6,7 @@
   <data>
     <variable
         name="song"
-        type="com.example.domain.entity.SongResponse"
+        type="com.example.domain.entity.Song"
         />
   </data>
   <androidx.constraintlayout.motion.widget.MotionLayout

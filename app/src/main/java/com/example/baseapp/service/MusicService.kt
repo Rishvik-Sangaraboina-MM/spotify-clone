@@ -2,7 +2,7 @@ package com.example.baseapp.service
 
 import com.example.baseapp.util.OnSongChangeListener
 import com.example.baseapp.util.asConcatenatingMediaSource
-import com.example.domain.entity.SongResponse
+import com.example.domain.entity.Song
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.Player.EventListener
@@ -20,7 +20,7 @@ class MusicService @Inject constructor(
 
   private lateinit var onSongChangeListener: OnSongChangeListener
 
-  private var currentPlayList: List<SongResponse>? = null
+  private var currentPlayList: List<Song>? = null
 
   private var currentSongIndex: Int? = null
 
@@ -33,7 +33,7 @@ class MusicService @Inject constructor(
   }
 
   fun preparePlayer(
-    songs: List<SongResponse>,
+    songs: List<Song>,
     index: Int,
     playNow: Boolean
   ) {

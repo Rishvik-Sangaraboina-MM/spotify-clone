@@ -11,7 +11,6 @@ import com.example.baseapp.injection.module.SourceModule
 import com.example.baseapp.injection.module.UseCaseModule
 import com.example.baseapp.injection.module.ViewModelFactoryModule
 import com.example.baseapp.injection.qualifiers.ApplicationContext
-import com.example.baseapp.service.MusicService
 import com.example.baseapp.util.BaseApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -43,6 +42,4 @@ interface AppComponent : AndroidInjector<BaseApplication> {
       @BindsInstance @ApplicationContext context: Context
     ): AppComponent
   }
-
-  fun inject(musicService: MusicService)
 }

@@ -10,7 +10,7 @@ import com.example.baseapp.service.MusicService
 import com.example.baseapp.ui.base.BaseActivity
 import com.example.baseapp.util.OnSongChangeListener
 import com.example.baseapp.util.SongItemClickListener
-import com.example.domain.entity.SongResponse
+import com.example.domain.entity.Song
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
@@ -62,7 +62,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
   }
 
   override fun onSongItemClick(
-    songs: List<SongResponse>,
+    songs: List<Song>,
     index: Int
   ) {
     musicService.setOnSongChangeListener(this)
@@ -70,7 +70,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
     binding.motionLayout.transitionToEnd()
   }
 
-  override fun onSongChange(songResponse: SongResponse?) {
+  override fun onSongChange(songResponse: Song?) {
     binding.song = songResponse
   }
 
