@@ -13,6 +13,8 @@ class SongsRecyclerAdapter : RecyclerView.Adapter<SongViewHolder>() {
 
   private var list = listOf<Song>()
 
+  var isGridLayout: Boolean = false
+
   private lateinit var songItemClickListener: SongItemClickListener
 
   override fun onCreateViewHolder(
@@ -44,6 +46,8 @@ class SongsRecyclerAdapter : RecyclerView.Adapter<SongViewHolder>() {
   inner class SongViewHolder(private val binding: ItemSongBinding) : ViewHolder(binding.root) {
     fun bind(position: Int) {
       val song = list[position]
+      if (isGridLayout)
+        binding.itemSong.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
       with(binding) {
         songTitle.text = song.trackName
         songArtist.text = song.artistName

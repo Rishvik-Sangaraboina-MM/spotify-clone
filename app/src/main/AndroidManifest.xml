@@ -25,11 +25,9 @@
     </activity>
     <activity android:name=".ui.home.HomeActivity" />
 
-    <service android:name=".service.MusicService">
-      <intent-filter>
-        <action android:name="android.media.browse.MediaBrowserService" />
-      </intent-filter>
-    </service>
+    <service
+        android:name=".service.MusicService"
+        android:foregroundServiceType="mediaPlayback" />
   </application>
 
 </manifest>

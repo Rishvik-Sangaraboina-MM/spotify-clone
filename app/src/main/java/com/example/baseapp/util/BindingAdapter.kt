@@ -24,7 +24,7 @@ object BindingAdapter {
   ) {
     Glide.with(imageView.context)
       .load(url)
-      .centerCrop()
+      .fitCenter()
       .placeholder(R.drawable.exo_styled_controls_audiotrack)
       .into(imageView)
   }

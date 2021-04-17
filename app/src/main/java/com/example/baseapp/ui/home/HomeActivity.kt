@@ -1,17 +1,23 @@
 package com.example.baseapp.ui.home
 
+import android.content.ComponentName
+import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityHomeBinding
 import com.example.baseapp.service.MusicService
+import com.example.baseapp.service.MusicService.MusicServiceBinder
 import com.example.baseapp.ui.base.BaseActivity
 import com.example.baseapp.util.OnSongChangeListener
 import com.example.baseapp.util.SongItemClickListener
 import com.example.domain.entity.Song
-import javax.inject.Inject
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
   SongItemClickListener,
@@ -21,8 +27,21 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
 
   override fun getLayoutId(): Int = R.layout.activity_home
 
-  @Inject
-  lateinit var musicService: MusicService
+  private val serviceConnection: ServiceConnection = object : ServiceConnection {
+    override fun onServiceConnected(
+      name: ComponentName?,
+      service: IBinder?
+    ) {
+      Log.i("Service", "Connected")
+      musicService = (service as MusicServiceBinder)?.getServiceInstance()
+    }
+
+    override fun onServiceDisconnected(name: ComponentName?) {
+      Log.i("Service", "Disconnected")
+    }
+  }
+
+  var musicService: MusicService? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -36,27 +55,28 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
         findNavController(R.id.nav_host_fragment_container)
       )
     }
+    binding.linearLayout.isVisible = false
   }
 
   private fun addListeners() {
     with(binding) {
       playPause.setOnClickListener {
-        if (musicService.playPause())
+        if (musicService?.isPlaying() == true)
           Glide.with(it.context).load(R.drawable.ic_pause).into(playPause)
         else
           Glide.with(it.context).load(R.drawable.ic_play).into(playPause)
       }
       skipNext.setOnClickListener {
-        musicService.skipNext()
+        musicService?.skipNext()
       }
       skipPrevious.setOnClickListener {
-        musicService.skipPrevious()
+        musicService?.skipPrevious()
       }
       forward.setOnClickListener {
-        musicService.forward()
+        musicService?.forward()
       }
       rewind.setOnClickListener {
-        musicService.rewind()
+        musicService?.rewind()
       }
     }
   }
@@ -65,9 +85,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
     songs: List<Song>,
     index: Int
   ) {
-    musicService.setOnSongChangeListener(this)
-    musicService.preparePlayer(songs, index, true)
-    binding.motionLayout.transitionToEnd()
+    musicService?.setOnSongChangeListener(this)
+    musicService?.preparePlaylist(songs, index, true)
+    musicService?.let {
+      binding.linearLayout.isVisible = true
+      binding.motionLayout.transitionToEnd()
+    } ?: startService()
+  }
+
+  private fun startService() {
+    val intent = Intent(this, MusicService::class.java)
+    startService(intent)
+    bindService(intent, serviceConnection, BIND_AUTO_CREATE)
   }
 
   override fun onSongChange(songResponse: Song?) {

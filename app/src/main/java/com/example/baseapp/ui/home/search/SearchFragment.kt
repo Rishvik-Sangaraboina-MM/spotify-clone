@@ -48,6 +48,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchVM>() {
       recyclerView.layoutManager = GridLayoutManager(context, 2)
       recyclerView.adapter = songsRecyclerAdapter
     }
+    songsRecyclerAdapter.isGridLayout = true
     songsRecyclerAdapter.setOnClickListener(activity as HomeActivity)
   }
 
