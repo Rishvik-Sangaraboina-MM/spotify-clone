@@ -10,8 +10,6 @@ import com.example.baseapp.ui.base.BaseFragment
 import com.example.baseapp.ui.home.HomeActivity
 import com.example.baseapp.ui.home.music.SongsRecyclerAdapter
 import com.example.baseapp.util.ViewState.Error
-import com.example.baseapp.util.ViewState.Idle
-import com.example.baseapp.util.ViewState.Loading
 import com.example.baseapp.util.ViewState.Success
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchVM>() {
@@ -55,10 +53,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchVM>() {
   private fun addObserver() {
     viewModel.viewState.observe(viewLifecycleOwner) {
       when (it) {
-        is Error -> Unit
-        Idle -> Unit
-        Loading -> Unit
-        is Success -> {
+        is Error -> showToast(it.msg)
+        Success -> {
           viewModel.searchLiveData.value?.let { response ->
             (binding.recyclerView.adapter as SongsRecyclerAdapter).addResponse(response)
           }

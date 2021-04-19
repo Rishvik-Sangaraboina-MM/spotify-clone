@@ -7,7 +7,7 @@ import dagger.android.DaggerApplication
 class TestApplication : DaggerApplication() {
 
   private val component: TestAppComponent by lazy {
-    DaggerTestAppComponent.factory().create(this, applicationContext) as TestAppComponent
+    DaggerTestAppComponent.factory().create(this, applicationContext)
   }
 
   override fun applicationInjector() = component

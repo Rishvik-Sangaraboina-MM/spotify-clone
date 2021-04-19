@@ -25,18 +25,17 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : DaggerFragmen
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    bindContentView(inflater, getLayoutId(), container)
+    binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+    binding.lifecycleOwner = this
     return binding.root
   }
 
-  private fun bindContentView(
-    inflater: LayoutInflater,
-    layoutId: Int,
-    viewGroup: ViewGroup?
+  override fun onViewCreated(
+    view: View,
+    savedInstanceState: Bundle?
   ) {
-    binding = DataBindingUtil.inflate(inflater, layoutId, viewGroup, false)
+    super.onViewCreated(view, savedInstanceState)
     viewModel = ViewModelProvider(this, viewModelFactory).get(getViewModelClass())
-    binding.lifecycleOwner = this
   }
 
   fun showToast(msg: String) {

@@ -8,6 +8,7 @@ import com.example.baseapp.databinding.FragmentMusicBinding
 import com.example.baseapp.ui.base.BaseFragment
 import com.example.baseapp.ui.home.HomeActivity
 import com.example.baseapp.util.AppConstants
+import com.example.baseapp.util.ViewState.Error
 
 class MusicFragment : BaseFragment<FragmentMusicBinding, MusicVM>() {
 
@@ -77,6 +78,11 @@ class MusicFragment : BaseFragment<FragmentMusicBinding, MusicVM>() {
       }
       workoutLiveData.observe(viewLifecycleOwner) {
         workoutPlayListAdapter.addResponse(it)
+      }
+      viewState.observe(viewLifecycleOwner) {
+        when (it) {
+          is Error -> showToast(it.msg)
+        }
       }
     }
   }

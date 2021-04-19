@@ -32,7 +32,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountVM>() {
   private fun addObservers() {
     viewModel.viewState.observe(viewLifecycleOwner) {
       when (it) {
-        is Success -> context?.openActivityWithSingleTop<LoginActivity>()
+        Success -> context?.openActivityWithSingleTop<LoginActivity>()
       }
     }
   }

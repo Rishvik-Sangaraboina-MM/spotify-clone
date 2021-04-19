@@ -1,6 +1,7 @@
 package com.example.baseapp.injection
 
 import com.example.data.remote.api.AuthApi
+import com.example.data.remote.api.MusicApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -66,5 +67,11 @@ class FakeNetworkModule {
   @Singleton
   fun provideAuthApi(retrofit: Retrofit): AuthApi {
     return retrofit.create(AuthApi::class.java)
+  }
+
+  @Provides
+  @Singleton
+  fun provideMusicApi(retrofit: Retrofit): MusicApi {
+    return retrofit.create(MusicApi::class.java)
   }
 }
