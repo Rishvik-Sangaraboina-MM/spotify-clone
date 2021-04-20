@@ -18,7 +18,7 @@ internal suspend fun <T> safeApiCall(
     } catch (throwable: Throwable) {
       Log.e("safeApiCall", throwable.message.toString())
       when (throwable) {
-        is IOException -> SafeResult.NetworkError
+        is IOException -> SafeResult.NetworkError()
         is HttpException -> SafeResult.Failure(throwable)
         else -> SafeResult.Failure(Exception(throwable))
       }

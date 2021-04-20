@@ -23,10 +23,12 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".ui.home.HomeActivity" />
+    <activity
+        android:name=".ui.home.HomeActivity"
+        android:windowSoftInputMode="adjustPan" />
 
     <service
-        android:name=".service.MusicService"
+        android:name=".musicService.MusicService"
         android:foregroundServiceType="mediaPlayback" />
   </application>
 

@@ -56,7 +56,10 @@ class MusicVM @Inject constructor(private val fetchMusicUseCase: FetchMusicUseCa
     _viewState.value = Loading
     when (val res = fetchMusicUseCase.perform(term)) {
       is Failure -> _viewState.value = Error("Api Failure")
-      NetworkError -> _viewState.value = Error("Network Failure")
+      is NetworkError -> {
+        _viewState.value = Error("Network Failure")
+        map[term]?.value = res.cache
+      }
       is Success -> {
         map[term]?.value = res.data
         _viewState.value = ViewState.Success

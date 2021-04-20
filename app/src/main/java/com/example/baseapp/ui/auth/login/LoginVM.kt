@@ -29,7 +29,7 @@ class LoginVM @Inject constructor(
     _viewState.value = Loading
     when (val res = loginUserUseCase.perform(loginRequest)) {
       is Failure -> _viewState.value = Error(res.message)
-      NetworkError -> _viewState.value = Error("Network Error")
+      is NetworkError -> _viewState.value = Error("Network Error")
       is Success -> _viewState.value = ViewState.Success
     }
   }

@@ -2,6 +2,7 @@ package com.example.baseapp.injection
 
 import android.content.Context
 import com.example.baseapp.TestApplication
+import com.example.baseapp.injection.module.DatabaseModule
 import com.example.baseapp.injection.module.PreferenceModule
 import com.example.baseapp.injection.module.RepositoryModule
 import com.example.baseapp.injection.module.SourceModule
@@ -26,7 +27,8 @@ import javax.inject.Singleton
     SourceModule::class,
     RepositoryModule::class,
     UseCaseModule::class,
-    PreferenceModule::class
+    PreferenceModule::class,
+    DatabaseModule::class
   ]
 )
 interface TestAppComponent : AndroidInjector<TestApplication> {

@@ -7,7 +7,7 @@ sealed class SafeResult<out T> {
     val message: String = exception?.localizedMessage ?: ""
   ) : SafeResult<Nothing>()
 
-  object NetworkError : SafeResult<Nothing>()
+  data class NetworkError<T>(val cache: T? = null) : SafeResult<T>()
 
   override fun toString(): String {
     return when (this) {

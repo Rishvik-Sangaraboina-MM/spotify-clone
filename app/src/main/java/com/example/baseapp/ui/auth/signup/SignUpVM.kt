@@ -24,7 +24,7 @@ class SignUpVM @Inject constructor(private val signUpUserUseCase: SignUpUserUseC
     _viewState.value = Loading
     when (val res = signUpUserUseCase.perform(signUpRequest)) {
       is Failure -> _viewState.value = Error(res.message)
-      NetworkError -> _viewState.value = Error("Network Error")
+      is NetworkError -> _viewState.value = Error("Network Error")
       is Success -> _viewState.value = ViewState.Success
     }
 

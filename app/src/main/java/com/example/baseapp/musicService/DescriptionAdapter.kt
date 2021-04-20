@@ -1,4 +1,4 @@
-package com.example.baseapp.service
+package com.example.baseapp.musicService
 
 import android.app.PendingIntent
 import android.content.Context

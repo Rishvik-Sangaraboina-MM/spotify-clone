@@ -18,7 +18,7 @@ class AuthRepo(
   override suspend fun login(loginRequest: LoginRequest): SafeResult<Auth> {
     return when (val result = authRemoteSource.login(loginRequest)) {
       is Failure -> result
-      NetworkError -> NetworkError
+      is NetworkError -> NetworkError()
       is Success -> {
         result.data.apply {
           authLocalSource.saveTokens(accessToken, refreshToken)
@@ -31,7 +31,7 @@ class AuthRepo(
   override suspend fun signUp(signUpRequest: SignUpRequest): SafeResult<Auth> {
     return when (val result = authRemoteSource.signUp(signUpRequest)) {
       is Failure -> result
-      NetworkError -> NetworkError
+      is NetworkError -> NetworkError()
       is Success -> {
         result.data.apply {
           authLocalSource.saveTokens(accessToken, refreshToken)

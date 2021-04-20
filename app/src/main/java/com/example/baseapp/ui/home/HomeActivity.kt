@@ -12,8 +12,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityHomeBinding
-import com.example.baseapp.service.MusicService
-import com.example.baseapp.service.MusicService.MusicServiceBinder
+import com.example.baseapp.musicService.MusicService
+import com.example.baseapp.musicService.MusicService.MusicServiceBinder
 import com.example.baseapp.ui.base.BaseActivity
 import com.example.baseapp.util.OnSongChangeListener
 import com.example.baseapp.util.SongItemClickListener
@@ -33,7 +33,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeVM>(),
       service: IBinder?
     ) {
       Log.i("Service", "Connected")
-      musicService = (service as MusicServiceBinder)?.getServiceInstance()
+      musicService = (service as MusicServiceBinder).getServiceInstance()
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {

@@ -3,14 +3,17 @@ package com.example.baseapp.ui.home.search
 import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.baseapp.R
 import com.example.baseapp.databinding.FragmentSearchBinding
 import com.example.baseapp.ui.base.BaseFragment
 import com.example.baseapp.ui.home.HomeActivity
 import com.example.baseapp.ui.home.music.SongsRecyclerAdapter
+import com.example.baseapp.util.ViewState
 import com.example.baseapp.util.ViewState.Error
 import com.example.baseapp.util.ViewState.Success
+import kotlinx.coroutines.flow.collect
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchVM>() {
 
@@ -51,13 +54,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchVM>() {
   }
 
   private fun addObserver() {
-    viewModel.viewState.observe(viewLifecycleOwner) {
-      when (it) {
-        is Error -> showToast(it.msg)
-        Success -> {
-          viewModel.searchLiveData.value?.let { response ->
-            (binding.recyclerView.adapter as SongsRecyclerAdapter).addResponse(response)
-          }
+    lifecycleScope.launchWhenStarted {
+      viewModel.viewStateFlow.collect {
+        handleViewState(it)
+      }
+    }
+  }
+
+  private fun handleViewState(viewState: ViewState) {
+    when (viewState) {
+      is Error -> {
+        showToast(viewState.msg)
+        viewModel.searchLiveData.value?.let { cache ->
+          (binding.recyclerView.adapter as SongsRecyclerAdapter).addResponse(cache)
+        }
+      }
+      is Success -> {
+        viewModel.searchLiveData.value?.let { response ->
+          (binding.recyclerView.adapter as SongsRecyclerAdapter).addResponse(response)
         }
       }
     }

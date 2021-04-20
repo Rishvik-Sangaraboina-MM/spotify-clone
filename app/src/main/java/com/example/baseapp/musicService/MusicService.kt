@@ -1,4 +1,4 @@
-package com.example.baseapp.service
+package com.example.baseapp.musicService
 
 import android.app.PendingIntent
 import android.content.Intent
@@ -72,7 +72,7 @@ class MusicService : MediaBrowserServiceCompat(), EventListener {
   }
 
   private fun createNotification(sessionToken: Token) {
-    val notificationManager = PlayerNotificationManager.createWithNotificationChannel(
+    PlayerNotificationManager.createWithNotificationChannel(
       this, AppConstants.CHANNEL_ID, R.string.channel_name,
       R.string.channel_description, ONGOING_NOTIFICATION_ID,
       DescriptionAdapter(applicationContext, mediaController)

@@ -1,5 +1,6 @@
 package com.example.data.mapper
 
+import com.example.data.local.model.SongEntity
 import com.example.data.remote.model.auth.AuthResponse
 import com.example.data.remote.model.auth.UserResponse
 import com.example.data.remote.model.music.MusicResponse
@@ -25,5 +26,20 @@ fun MusicResponse.toMusic(): Music {
 }
 
 fun SongResponse.toSong(): Song {
+  return Song(artistName, artworkUrl100, previewUrl, trackName)
+}
+
+fun SongResponse.toSongEntity(keyword: String): SongEntity {
+  return SongEntity(
+    keyword, artistId, artistName, artistViewUrl, artworkUrl100, artworkUrl30, artworkUrl60,
+    collectionArtistName, collectionCensoredName, collectionExplicitness, collectionId,
+    collectionName, collectionPrice, collectionViewUrl, country, currency, discCount, discNumber,
+    isStreamable, kind, previewUrl, primaryGenreName, releaseDate, trackCensoredName, trackCount,
+    trackExplicitness, trackId, trackName, trackNumber, trackPrice, trackTimeMillis, trackViewUrl,
+    wrapperType
+  )
+}
+
+fun SongEntity.toSong(): Song {
   return Song(artistName, artworkUrl100, previewUrl, trackName)
 }
