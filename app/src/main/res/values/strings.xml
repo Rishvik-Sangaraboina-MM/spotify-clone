@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Base App</string>
+  <string name="app_name">Spotify Clone</string>
   <string name="login">Login</string>
   <string name="logout">Logout</string>
   <string name="username">Username</string>
@@ -12,9 +12,15 @@
   <string name="text_phone">Phone</string>
   <string name="text_first_name">First Name</string>
   <string name="text_last_name">Last Name</string>
-  <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="music">Music</string>
   <string name="search">Search</string>
   <string name="account">Account</string>
+  <string name="notification_channel_name">Music Channel</string>
+  <string name="notification_channel_description">Shows the currently playing music</string>
+  <string name="ticker_text">Ticker</string>
+  <string name="notification_title">Spotify Clone</string>
+  <string name="notification_message">Playing song</string>
+  <string name="channel_name">Media Playback</string>
+  <string name="channel_description">Playing Audio Tracks</string>
 </resources>

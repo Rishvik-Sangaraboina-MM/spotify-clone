@@ -1,63 +1,65 @@
 package com.example.baseapp.ui.home.search
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.baseapp.R
+import com.example.baseapp.databinding.FragmentSearchBinding
+import com.example.baseapp.ui.base.BaseFragment
+import com.example.baseapp.ui.home.HomeActivity
+import com.example.baseapp.ui.home.music.SongsRecyclerAdapter
+import com.example.baseapp.util.ViewState.Error
+import com.example.baseapp.util.ViewState.Success
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class SearchFragment : BaseFragment<FragmentSearchBinding, SearchVM>() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SearchFragment : Fragment() {
-  // TODO: Rename and change types of parameters
-  private var param1: String? = null
-  private var param2: String? = null
+  override fun getViewModelClass(): Class<SearchVM> = SearchVM::class.java
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    arguments?.let {
-      param1 = it.getString(ARG_PARAM1)
-      param2 = it.getString(ARG_PARAM2)
-    }
-  }
+  override fun getLayoutId(): Int = R.layout.fragment_search
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
+  private val songsRecyclerAdapter = SongsRecyclerAdapter()
+
+  override fun onViewCreated(
+    view: View,
     savedInstanceState: Bundle?
-  ): View? {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_search, container, false)
+  ) {
+    super.onViewCreated(view, savedInstanceState)
+    addObserver()
+    addListener()
+    initUI()
   }
 
-  companion object {
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SearchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    @JvmStatic fun newInstance(
-      param1: String,
-      param2: String
-    ) =
-      SearchFragment().apply {
-        arguments = Bundle().apply {
-          putString(ARG_PARAM1, param1)
-          putString(ARG_PARAM2, param2)
+  private fun addListener() {
+    binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+      override fun onQueryTextSubmit(query: String?): Boolean {
+        query?.let { viewModel.search(it) }
+        return false
+      }
+
+      override fun onQueryTextChange(newText: String?): Boolean = false
+    })
+  }
+
+  private fun initUI() {
+    with(binding) {
+      recyclerView.layoutManager = GridLayoutManager(context, 2)
+      recyclerView.adapter = songsRecyclerAdapter
+    }
+    songsRecyclerAdapter.isGridLayout = true
+    songsRecyclerAdapter.setOnClickListener(activity as HomeActivity)
+  }
+
+  private fun addObserver() {
+    viewModel.viewState.observe(viewLifecycleOwner) {
+      when (it) {
+        is Error -> showToast(it.msg)
+        Success -> {
+          viewModel.searchLiveData.value?.let { response ->
+            (binding.recyclerView.adapter as SongsRecyclerAdapter).addResponse(response)
+          }
         }
       }
+    }
   }
 }

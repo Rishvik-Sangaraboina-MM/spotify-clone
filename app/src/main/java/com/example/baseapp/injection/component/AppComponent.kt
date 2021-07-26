@@ -6,10 +6,12 @@ import com.example.baseapp.injection.module.AppModule
 import com.example.baseapp.injection.module.NetworkModule
 import com.example.baseapp.injection.module.PreferenceModule
 import com.example.baseapp.injection.module.RepositoryModule
+import com.example.baseapp.injection.module.ServiceModule
 import com.example.baseapp.injection.module.SourceModule
 import com.example.baseapp.injection.module.UseCaseModule
 import com.example.baseapp.injection.module.ViewModelFactoryModule
 import com.example.baseapp.injection.qualifiers.ApplicationContext
+import com.example.baseapp.service.MusicService
 import com.example.baseapp.util.BaseApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -28,7 +30,8 @@ import javax.inject.Singleton
     SourceModule::class,
     UseCaseModule::class,
     NetworkModule::class,
-    PreferenceModule::class
+    PreferenceModule::class,
+    ServiceModule::class
   ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
@@ -40,4 +43,6 @@ interface AppComponent : AndroidInjector<BaseApplication> {
       @BindsInstance @ApplicationContext context: Context
     ): AppComponent
   }
+
+  fun inject(musicService: MusicService)
 }

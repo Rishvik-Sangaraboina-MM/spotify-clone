@@ -7,10 +7,11 @@ import com.example.baseapp.injection.module.RepositoryModule
 import com.example.baseapp.injection.module.SourceModule
 import com.example.baseapp.injection.module.UseCaseModule
 import com.example.baseapp.injection.qualifiers.ApplicationContext
+import com.example.baseapp.usecaseTest.FetchMusicUseCaseTest
 import com.example.baseapp.usecaseTest.IsUserLoggedInUseCaseTest
 import com.example.baseapp.usecaseTest.LoginUserUseCaseTest
 import com.example.baseapp.usecaseTest.LogoutUserUseCaseTest
-import com.example.baseapp.usecaseTest.SignUpUserUseCase
+import com.example.baseapp.usecaseTest.SignUpUserUseCaseTest
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -44,5 +45,7 @@ interface TestAppComponent : AndroidInjector<TestApplication> {
 
   fun inject(logoutUserUseCaseTest: LogoutUserUseCaseTest)
 
-  fun inject(signUpUserUseCase: SignUpUserUseCase)
+  fun inject(signUpUserUseCaseTest: SignUpUserUseCaseTest)
+
+  fun inject(fetchMusicUseCaseTest: FetchMusicUseCaseTest)
 }

@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.example.baseapp.R
 import com.example.baseapp.databinding.FragmentMusicBinding
 import com.example.baseapp.ui.base.BaseFragment
+import com.example.baseapp.ui.home.HomeActivity
 import com.example.baseapp.util.AppConstants
+import com.example.baseapp.util.ViewState.Error
 
 class MusicFragment : BaseFragment<FragmentMusicBinding, MusicVM>() {
 
@@ -14,11 +16,31 @@ class MusicFragment : BaseFragment<FragmentMusicBinding, MusicVM>() {
 
   override fun getLayoutId(): Int = R.layout.fragment_music
 
-  private var chillPlayListAdapter = MusicRecyclerAdapter(AppConstants.PLAYLIST_CHILL)
-  private var energyPlayListAdapter = MusicRecyclerAdapter(AppConstants.PLAYLIST_ENERGY)
-  private var partyPlayListAdapter = MusicRecyclerAdapter(AppConstants.PLAYLIST_PARTY)
-  private var sleepPlayListAdapter = MusicRecyclerAdapter(AppConstants.PLAYLIST_SLEEP)
-  private var workoutPlayListAdapter = MusicRecyclerAdapter(AppConstants.PLAYLIST_WORKOUT)
+  private val chillPlayListAdapter by lazy {
+    MusicRecyclerAdapter(
+      AppConstants.PLAYLIST_CHILL, activity as HomeActivity
+    )
+  }
+  private val energyPlayListAdapter by lazy {
+    MusicRecyclerAdapter(
+      AppConstants.PLAYLIST_ENERGY, activity as HomeActivity
+    )
+  }
+  private val partyPlayListAdapter by lazy {
+    MusicRecyclerAdapter(
+      AppConstants.PLAYLIST_PARTY, activity as HomeActivity
+    )
+  }
+  private val sleepPlayListAdapter by lazy {
+    MusicRecyclerAdapter(
+      AppConstants.PLAYLIST_SLEEP, activity as HomeActivity
+    )
+  }
+  private val workoutPlayListAdapter by lazy {
+    MusicRecyclerAdapter(
+      AppConstants.PLAYLIST_WORKOUT, activity as HomeActivity
+    )
+  }
 
   override fun onViewCreated(
     view: View,
@@ -56,6 +78,11 @@ class MusicFragment : BaseFragment<FragmentMusicBinding, MusicVM>() {
       }
       workoutLiveData.observe(viewLifecycleOwner) {
         workoutPlayListAdapter.addResponse(it)
+      }
+      viewState.observe(viewLifecycleOwner) {
+        when (it) {
+          is Error -> showToast(it.msg)
+        }
       }
     }
   }

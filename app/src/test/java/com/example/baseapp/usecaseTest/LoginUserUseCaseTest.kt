@@ -9,8 +9,11 @@ import com.example.data.local.TokenManager
 import com.example.domain.entity.LoginRequest
 import com.example.domain.usecase.auth.LoginUserUseCase
 import com.example.domain.util.SafeResult.Failure
+import com.example.domain.util.SafeResult.NetworkError
 import com.example.domain.util.SafeResult.Success
 import kotlinx.coroutines.runBlocking
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.SocketPolicy.DISCONNECT_AT_START
 import org.junit.Test
 import org.robolectric.annotation.Config
 import javax.inject.Inject
@@ -30,21 +33,17 @@ class LoginUserUseCaseTest : BaseTest() {
     testAppComponent.inject(this)
   }
 
-  override fun setup() {
-    super.setup()
-    mockWebServer.enqueueResponse("responses/login_response.json")
-  }
-
   @Test
   fun `server works - returns success`() = runBlocking {
+    mockWebServer.enqueueResponse("responses/login_response.json")
     val result = loginUserUseCase.perform(loginRequest)
     assert(result is Success)
   }
 
   @Test
   fun `server works - returns success, tokens are saved`() = runBlocking {
+    mockWebServer.enqueueResponse("responses/login_response.json")
     val result = loginUserUseCase.perform(loginRequest)
-
     assert((result as Success).data.refreshToken.isNotEmpty())
     assert(result.data.accessToken.isNotEmpty())
     assert(result.data.accessToken == tokenManager.accessToken)
@@ -53,8 +52,16 @@ class LoginUserUseCaseTest : BaseTest() {
 
   @Test
   fun `server fails - returns failure`() = runBlocking {
+    mockWebServer.enqueueResponse("responses/login_response.json")
     mockWebServer.dispatcher = MockFailureDispatcher()
     val result = loginUserUseCase.perform(loginRequest)
     assert(result is Failure)
+  }
+
+  @Test
+  fun `no internet - return NetworkError`() = runBlocking {
+    mockWebServer.enqueue(MockResponse().setSocketPolicy(DISCONNECT_AT_START))
+    val result = loginUserUseCase.perform(loginRequest)
+    assert(result is NetworkError)
   }
 }

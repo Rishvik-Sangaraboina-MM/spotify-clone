@@ -1,8 +1,8 @@
 package com.example.baseapp.ui.home
 
-import com.example.baseapp.ui.base.BaseVM
+import androidx.lifecycle.ViewModel
 import javax.inject.Inject
 
-class HomeVM @Inject constructor() : BaseVM() {
+class HomeVM @Inject constructor() : ViewModel() {
 
 }

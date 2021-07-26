@@ -2,8 +2,8 @@ package com.example.baseapp.ui.home.music
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.baseapp.ui.base.BaseVM
 import com.example.baseapp.util.AppConstants
 import com.example.baseapp.util.ViewState
 import com.example.baseapp.util.ViewState.Error
@@ -16,7 +16,7 @@ import com.example.domain.util.SafeResult.Success
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MusicVM @Inject constructor(private val fetchMusicUseCase: FetchMusicUseCase) : BaseVM() {
+class MusicVM @Inject constructor(private val fetchMusicUseCase: FetchMusicUseCase) : ViewModel() {
 
   private val _chillLiveData: MutableLiveData<List<Song>> = MutableLiveData()
   val chillLiveData: LiveData<List<Song>> = _chillLiveData
@@ -36,7 +36,7 @@ class MusicVM @Inject constructor(private val fetchMusicUseCase: FetchMusicUseCa
   private val _viewState: MutableLiveData<ViewState> = MutableLiveData()
   val viewState: LiveData<ViewState> = _viewState
 
-  private val map = mapOf<String, MutableLiveData<List<Song>>>(
+  private val map = mapOf(
     Pair(AppConstants.PLAYLIST_CHILL, _chillLiveData),
     Pair(AppConstants.PLAYLIST_ENERGY, _energyLiveData),
     Pair(AppConstants.PLAYLIST_PARTY, _partyLiveData),
@@ -58,8 +58,8 @@ class MusicVM @Inject constructor(private val fetchMusicUseCase: FetchMusicUseCa
       is Failure -> _viewState.value = Error("Api Failure")
       NetworkError -> _viewState.value = Error("Network Failure")
       is Success -> {
-        _viewState.value = ViewState.Success
         map[term]?.value = res.data
+        _viewState.value = ViewState.Success
       }
     }
   }

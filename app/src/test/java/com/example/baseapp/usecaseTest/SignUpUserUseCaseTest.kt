@@ -13,7 +13,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import javax.inject.Inject
 
-class SignUpUserUseCase : BaseTest() {
+class SignUpUserUseCaseTest : BaseTest() {
 
   @Inject
   lateinit var signUpUserUseCase: SignUpUserUseCase
